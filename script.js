@@ -1,25 +1,5 @@
-// Make A Ship Class
-//make main class
 
-// Make the Human Ship sub-class.
-
-// Make an Alien Ship sub-class.
-//random numbers
-// hull - between 3and 6
-// firepower - between 2and 4
-// accuracy - between .6and .8
-
-// Make an instance of each class
-
-// Simulate a battle between your ship and a single alien ship first.
-
-// Make a method for the USS Assembly that will attack a given target. The target can be an input to the method.
-
-// Run the method and pass it the alien ship.
-
-// Make it so the method reduces the target's hull by the firepower of the USS Assembly.
-
-
+//ship
 class ship {
     constructor () {
         this.hull = 0;
@@ -30,6 +10,7 @@ class ship {
     }
 }
 
+//human ship
 class humanShip extends ship {
     constructor(name){
         super();
@@ -43,6 +24,7 @@ class humanShip extends ship {
         }
 }
 
+//alienship
 class alienShip extends ship {
     constructor(){
         super();
@@ -57,23 +39,56 @@ class alienShip extends ship {
     
 }
 
+//creates 6 alienships
 const ussAssembly = new humanShip('USS Assembly')
 let alienArmy = []
 for (let i = 0; i < 6; i++){
     alienArmy.push(new alienShip)
 }
 
+//game button 
+gamebutton.addEventListener('click', spaceGame)
+
+//game
+function spaceGame(){
 for (let i = 1; alienArmy.length != 0; i++){
+    //human attack alien
     if (Math.random() < ussAssembly.accuracy) {
         ussAssembly.attack(alienArmy[0]);
+        //log begin
         console.log('You hit the Alien Ship!');
-
+        let youhit = document.createElement('li');
+        youhit.innerHTML = 'You hit the Alien Ship!';
+        document.getElementById('log').append(youhit);
+        //log2
+        console.log('The Alien Ship has ' + alienArmy[0].hull + ' health left');
+        let youhealth = document.createElement('li');
+        youhealth.innerHTML = 'The Alien Ship has ' + alienArmy[0].hull + ' health left';
+        document.getElementById('log').append(youhealth);
+        //log end
         if(alienArmy[0].hull <= 0){
-            console.log('The Alien Ship went kabloo-ey!');
+            //1 alienship dies
             alienArmy.shift();
-
+            //log begin
+            //log1
+            console.log('The Alien Ship went kabloo-ey!');
+            let kablooey = document.createElement('li');
+            kablooey.innerHTML = 'The Alien Ship went kabloo-ey!';
+            document.getElementById('log').append(kablooey);
+            //log2
+            console.log('There are ' + alienArmy.length + " Alien Ships left");
+            let alienleft = document.createElement('li');
+            alienleft.innerHTML = 'There are ' + alienArmy.length + " Alien Ships left";
+            document.getElementById('log').append(alienleft);
+            //log end
             if(alienArmy.length === 0){
+                //you win 
                 console.log('You Win!');
+                //log1
+                console.log('Congratulations, You saved the Unisverse! You Win!');
+                let youwin = document.createElement('li');
+                youwin.innerHTML = 'Congratulations, You saved the Universe! You Win!';
+                document.getElementById('log').append(youwin);
                 break;
             }
         }
@@ -81,81 +96,37 @@ for (let i = 1; alienArmy.length != 0; i++){
     }
 
     if (Math.random() < alienArmy[0].accuracy) {
+        //alien attacks you
         alienArmy[0].attack(ussAssembly);
-        console.log('You have been hit!');
+        console.log('The Alien Ship hit you');
+        //log begin
+        console.log('The Alien Ship hit you');
+        let alienhit = document.createElement('li');
+        alienhit.innerHTML = 'The Alien Ship hit you';
+        document.getElementById('log').append(alienhit);
+        //log2
+        console.log('You have' + ussAssembly.hull + ' health left');
+        let alienhealth = document.createElement('li');
+        alienhealth.innerHTML = 'You have ' + ussAssembly.hull + ' health left';
+        document.getElementById('log').append(alienhealth);
+        //log end
+        //log end
         if(ussAssembly.hull <= 0){
-            console.log("Game Over Man!... Game... Over!")
+            //you die and lose
+            //log1
+            console.log('Sorry, you died. You lose. Game Over.');
+            let youlose = document.createElement('li');
+            youlose.innerHTML = 'Sorry, you died. You lose. Game Over.';
+            document.getElementById('log').append(youlose);
             break;
         }
     }
-
-    console.log(ussAssembly.name + ' ' + ussAssembly.hull);
-    console.log(alienArmy[0].name + ' ' + alienArmy[0].hull + ' and ' + alienArmy.length + ' ships left');
-
 }
-// const iksAmar = new alienShip()
+}
 
-// console.log(iksAmar)
-// ussAssembly.attack(iksAmar)
-// console.log(iksAmar)
-
-// console.log(ussAssembly)
-// iksAmar.attack(ussAssembly)
-// console.log(ussAssembly)
-
-
-// Make a game object
-
-// Make a method in the game object that will run a 'check win' for the health of the alien(s) and/or the USS Assembly. If the hull is 0 or less, display a message that the ship went kabloo-ey.
-
-// console.log(ussAssembly.hull)
-
-// console.log(iksAmar)
-// ussAssembly.attack(iksAmar)
-// console.log(iksAmar)
-
-// if(iksAmar.hull <= 0){
-//     console.log('The ship went kabloo-ey')
-// }
-
-// if (Math.random() < iksAmar.accuracy) {
-//     console.log(iksAmar)
-// 	console.log('You have been hit!');
-// }
-
-
-// console.log(alienArmy[0])
-
-// if(alienArmy.length != 0){
-
-//     if (Math.random() < ussAssemby.accuracy) {
-//         ussAssembly.attack(alienArmy[0]);
-//         console.log('You hit the Alien Ship!');
-
-//         if(alienArmy[0].hull <= 0){
-//             console.log('The Alien Ship went kabloo-ey!');
-//             alienArmy.shift();
-//         }
-//     }
-
-//     if (Math.random() < alienArmy[0].accuracy) {
-//         alienArmy[0].attack(ussAssembly);
-//         console.log('You have been hit!');
-//         if(ussAssembly.hull <= 0){
-//             break;
-//         }
-//     }
-
-
-
-// }
-
-// Make it so the alien will only be hit if a Math.random call is below the accuracy threshold.
-
-// Make a method for the alien ship to attack a target.
-
-// At a status console log for the end of the round.
-
-// PROBLEM: If you make the alien ship go kabloo-ey, then the alien should not then be able to attack you. Fix this.
-
-// Make it so the attacks will keep occuring until someone's hull is at 0. Isolate what it is that you want to repeat.
+//button to attack
+//health changes
+//button attack
+//loop function starts
+//loop till enemy dies, till a certain length
+//ask if you want to retreat or fight, and show health
