@@ -46,6 +46,9 @@ for (let i = 0; i < 6; i++){
     alienArmy.push(new alienShip)
 }
 
+//variable for log
+let everythinglog = document.getElementById('log')
+
 //game button 
 gamebutton.addEventListener('click', spaceGame)
 
@@ -56,6 +59,7 @@ for (let i = 1; alienArmy.length != 0; i++){
     if (Math.random() < ussAssembly.accuracy) {
         ussAssembly.attack(alienArmy[0]);
         //log begin
+        alert('You hit the Alien Ship! The Alien Ship has ' + alienArmy[0].hull + ' health left')
         console.log('You hit the Alien Ship!');
         let youhit = document.createElement('li');
         youhit.innerHTML = 'You hit the Alien Ship!';
@@ -81,10 +85,26 @@ for (let i = 1; alienArmy.length != 0; i++){
             alienleft.innerHTML = 'There are ' + alienArmy.length + " Alien Ships left";
             document.getElementById('log').append(alienleft);
             //log end
+            //retreat or keep going
+            //log confirm()
+            if (confirm("The Alien Ship went kabloo-ey! There are " + alienArmy.length + " Alien Ships left. You have " + ussAssembly.hull + " health left. Do you dare to continue? Press Ok to Continue, Press Cancel to Retreat")) {
+                console.log('Next round');
+                let continuewin = document.createElement('li');
+                continuewin.innerHTML = 'Next Round';
+                document.getElementById('log').append(continuewin);
+            } else {
+                alert('You retreated. Sorry, you lose');
+                console.log('You retreated. Sorry, you lose');
+                let retreatlose = document.createElement('li');
+                retreatlose.innerHTML = 'You retreated. You live to fight another day. Game Over';
+                document.getElementById('log').append(retreatlose);
+                break;
+            }
+            //retreat end
+            
             if(alienArmy.length === 0){
-                //you win 
-                console.log('You Win!');
                 //log1
+                alert('Congratulations, You saved the Universe! You Win!');
                 console.log('Congratulations, You saved the Unisverse! You Win!');
                 let youwin = document.createElement('li');
                 youwin.innerHTML = 'Congratulations, You saved the Universe! You Win!';
@@ -98,8 +118,8 @@ for (let i = 1; alienArmy.length != 0; i++){
     if (Math.random() < alienArmy[0].accuracy) {
         //alien attacks you
         alienArmy[0].attack(ussAssembly);
-        console.log('The Alien Ship hit you');
         //log begin
+        alert('The Alien Ship hit you. You have ' + ussAssembly.hull + ' health left');
         console.log('The Alien Ship hit you');
         let alienhit = document.createElement('li');
         alienhit.innerHTML = 'The Alien Ship hit you';
@@ -110,10 +130,10 @@ for (let i = 1; alienArmy.length != 0; i++){
         alienhealth.innerHTML = 'You have ' + ussAssembly.hull + ' health left';
         document.getElementById('log').append(alienhealth);
         //log end
-        //log end
         if(ussAssembly.hull <= 0){
             //you die and lose
             //log1
+            alert('Sorry, you died. You lose. Game Over.');
             console.log('Sorry, you died. You lose. Game Over.');
             let youlose = document.createElement('li');
             youlose.innerHTML = 'Sorry, you died. You lose. Game Over.';
