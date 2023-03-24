@@ -173,6 +173,7 @@ if(ussAssembly.hull <= 0){
     document.getElementById('log').append(youlose);
     document.getElementById('log').innerHTML = 'Sorry, you died. You lose. Game Over.'
     document.getElementById('gameoverdiv').innerHTML = ''
+    document.getElementById('humanstats').textContent = 'Health = 0 | Firepower = 0  | Accuracy = 0 ' 
     }
 }
 
@@ -189,9 +190,11 @@ if(document.getElementById('log').innerHTML != 'You retreated. You live to fight
 
 //updates stats
 function addstats(){
-    document.getElementById('humanstats').textContent = 'Health = ' + ussAssembly.hull+ " | Firepower = " + ussAssembly.firepower + " | Accuracy = " + ussAssembly.accuracy
-    document.getElementById('enemystats').textContent = 'Health = ' + alienArmy[0].hull + " | Firepower = " + alienArmy[0].firepower + " | Alien Ships = " + alienArmy.length
-}
+    if(document.getElementById('log').innerHTML != 'Sorry, you died. You lose. Game Over.'){
+        document.getElementById('humanstats').textContent = 'Health = ' + ussAssembly.hull+ " | Firepower = " + ussAssembly.firepower + " | Accuracy = " + ussAssembly.accuracy
+        document.getElementById('enemystats').textContent = 'Health = ' + alienArmy[0].hull + " | Firepower = " + alienArmy[0].firepower + " | Alien Ships = " + alienArmy.length
+        }
+    }
 
 //actual game function
 function spaceGame(){
