@@ -15,10 +15,12 @@ body {
   
 #human {
   background-color: black;
+  color: white;
   }
   
 #enemy {
     background-color: black;
+    color: white;
 }
 
 #gamebutton {

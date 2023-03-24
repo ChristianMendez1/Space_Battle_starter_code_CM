@@ -46,6 +46,9 @@ for (let i = 0; i < 6; i++){
     alienArmy.push(new alienShip)
 }
 
+//adds stats start of game
+addstats()
+
 //Play Button
 gamebutton.addEventListener("click", spaceGame)
    
@@ -206,6 +209,11 @@ gamebutton.addEventListener("click", spaceGame)
         }
 }
 
+        function addstats(){
+            document.getElementById('humanstats').textContent = 'Hull = ' + ussAssembly.hull+ " | Firepower = " + ussAssembly.firepower + " | Accuracy = " + ussAssembly.accuracy
+            document.getElementById('enemystats').textContent = 'Hull = ' + alienArmy[0].hull + " | Firepower = " + alienArmy[0].firepower + " | Accuracy = " + alienArmy[0].accuracy
+        }
+
    //game function
 function spaceGame(){
     fhumanAttack();
@@ -214,4 +222,5 @@ function spaceGame(){
     falienattackshuman();
     fhumandies();
     froundend();
+    addstats();
 }
