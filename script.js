@@ -53,18 +53,7 @@ addstats()
 gamebutton.addEventListener("click", spaceGame)
    
 //gaming functions
-    function fhumanMissed() {
-    //human missed
-    if (Math.random() > ussAssembly.accuracy){
-        //log1
-        console.log('You missed the Alien Ship');
-        let humanmissed = document.createElement('li');
-        humanmissed.innerHTML = 'You missed the Alien Ship';
-        document.getElementById('log').append(humanmissed);
-    }
-}
-
-    function fhumanAttack() {
+function fhumanAttack() {
     //human attack alien    
     if (Math.random() <= ussAssembly.accuracy) {
         ussAssembly.attack(alienArmy[0]);
@@ -121,28 +110,13 @@ gamebutton.addEventListener("click", spaceGame)
                 retreatlose.innerHTML = 'You retreated. You live to fight another day. Game Over';
                 document.getElementById('log').append(retreatlose);
                 document.getElementById('log').innerHTML = 'You retreated. You live to fight another day. Game Over'
+                document.getElementById('gameoverdiv').innerHTML = ''
             } 
         }
     }
-
-        function fretreatorkeepgoing(){
-            //retreat or keep going
-            if (confirm("The Alien Ship went kabloo-ey! There are " + alienArmy.length + " Alien Ships left. You have " + ussAssembly.hull + " health left. Do you dare to continue? Press Ok to Continue, Press Cancel to Retreat")) {
-                console.log('You lock on to your next target');
-                let continuewin = document.createElement('li');
-                continuewin.innerHTML = 'You lock on to your next target';
-                document.getElementById('log').append(continuewin);
-            } else {
-                console.log('You retreated. You live to fight another day. Game Over');
-                let retreatlose = document.createElement('li');
-                retreatlose.innerHTML = 'You retreated. You live to fight another day. Game Over';
-                document.getElementById('log').append(retreatlose);
-                document.getElementById('log').innerHTML = 'You retreated. You live to fight another day. Game Over'
-            } 
-        }
             
         function fnomorealiens(){
-            //no more aliens
+            //no more aliens you win
              if(alienArmy.length === 0){
                 //log1
                 console.log('Congratulations, You saved the Unisverse! You Win!');
@@ -150,21 +124,9 @@ gamebutton.addEventListener("click", spaceGame)
                 youwin.innerHTML = 'Congratulations, You saved the Universe! You Win!';
                 document.getElementById('log').append(youwin);
                 document.getElementById('log').innerHTML = 'Congratulations, You saved the Universe! You Win!'
-                return;
+                document.getElementById('gameoverdiv').innerHTML = ''
             }
         }
-    
-    function falienmisseshuman(){
-    //alien misses human
-    if (Math.random() > alienArmy[0].accuracy){
-        //missed
-        //log1
-        console.log('The Alien Ship missed your ship');
-        let alienmissed = document.createElement('li');
-        alienmissed.innerHTML = 'The Alien Ship missed your ship';
-        document.getElementById('log').append(alienmissed);
-    }
-}
 
     function falienattackshuman(){
     if(document.getElementById('log').innerHTML != 'You retreated. You live to fight another day. Game Over'){
@@ -202,6 +164,7 @@ gamebutton.addEventListener("click", spaceGame)
             youlose.innerHTML = 'Sorry, you died. You lose. Game Over.';
             document.getElementById('log').append(youlose);
             document.getElementById('log').innerHTML = 'Sorry, you died. You lose. Game Over.'
+            document.getElementById('gameoverdiv').innerHTML = ''
         }
     }
 
@@ -210,7 +173,7 @@ gamebutton.addEventListener("click", spaceGame)
         if(document.getElementById('log').innerHTML != 'You retreated. You live to fight another day. Game Over' && document.getElementById('log').innerHTML != 'Sorry, you died. You lose. Game Over.'){
             console.log('Round End');
             let nextround = document.createElement('li');
-            nextround.innerHTML = 'Round End';
+            nextround.innerHTML = '-----Round End------';
             document.getElementById('log').append(nextround);
         }
 }
@@ -229,4 +192,5 @@ function spaceGame(){
     fhumandies();
     froundend();
     addstats();
+    window.scrollTo(0, 10000);
 }

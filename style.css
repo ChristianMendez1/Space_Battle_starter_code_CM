@@ -1,28 +1,32 @@
 body {
     display: grid;
     grid-template-columns: 3fr 3fr 3fr;
+    grid-template-rows: 1fr 3fr;
     font-family: Helvetica;
     background-color: black;
     color: white;
     font-weight: bold;
-    font-size: large
+    font-size: large;
 
 }
 
 #log {
-    background-color: black
+    background-color: black;
+    margin-bottom: 20%;
   }
   
 #human {
   background-color: black;
   color: white;
   text-align: center;
+  grid-row: 1/3;
   }
   
 #enemy {
     background-color: black;
     color: white;
     text-align: center;
+    grid-row: 1/3;
 }
 
 #gamebutton {
@@ -30,16 +34,24 @@ body {
     background-color: white;
     border-width: 20px;
     border-color: red cyan blue yellow; /* red top, green right, blue bottom and yellow left */
+    grid-row: 1/2;
+    right: 10px;
+    margin-bottom: 10%;
 }
 
 ul {
-    list-style-type: none;
+    list-style-type: square;
     line-height: 1.4;
-    text-align: center;
+    grid-row: 2/3;
+    border: solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
 div {
   align-self: start;
   position: sticky;
-  top: 20px;
+  top: 0;
+  text-align: center;
 }
+
