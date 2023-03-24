@@ -63,11 +63,14 @@ function fhumanAttack() {
         let youhit = document.createElement('li');
         youhit.innerHTML = 'You hit the Alien Ship!';
         document.getElementById('log').append(youhit);
-        //log2
-        console.log('The Alien Ship has ' + alienArmy[0].hull + ' health left');
-        let youhealth = document.createElement('li');
-        youhealth.innerHTML = 'The Alien Ship has ' + alienArmy[0].hull + ' health left';
-        document.getElementById('log').append(youhealth);
+        //show health if alive
+        if(alienArmy[0].hull > 0){
+            //log2
+            console.log('The Alien Ship has ' + alienArmy[0].hull + ' health left');
+            let youhealth = document.createElement('li');
+            youhealth.innerHTML = 'The Alien Ship has ' + alienArmy[0].hull + ' health left';
+            document.getElementById('log').append(youhealth);
+        }
     } else { 
         //else miss
         console.log('You missed the Alien Ship');
