@@ -198,5 +198,5 @@ function spaceGame(){
     fhumandies();
     froundend();
     addstats();
-    window.scrollTo(0, 10000);
+    document.getElementById('log').scrollTo(0, 10000);
 }
