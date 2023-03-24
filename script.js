@@ -141,6 +141,7 @@ gamebutton.addEventListener("click", spaceGame)
                 youwin.innerHTML = 'Congratulations, You saved the Universe! You Win!';
                 document.getElementById('log').append(youwin);
                 document.getElementById('log').innerHTML = 'Congratulations, You saved the Universe! You Win!'
+                return;
             }
         }
     
@@ -157,29 +158,31 @@ gamebutton.addEventListener("click", spaceGame)
 }
 
     function falienattackshuman(){
+    if(document.getElementById('log').innerHTML != 'You retreated. You live to fight another day. Game Over'){
     //alien attacks human
-    if (Math.random() <= alienArmy[0].accuracy) {
-        //alien attacks you
-        alienArmy[0].attack(ussAssembly);
-        //log begin
-        console.log('The Alien Ship hit you');
-        let alienhit = document.createElement('li');
-        alienhit.innerHTML = 'The Alien Ship hit you';
-        document.getElementById('log').append(alienhit);
-        //log2
-        console.log('You have' + ussAssembly.hull + ' health left');
-        let alienhealth = document.createElement('li');
-        alienhealth.innerHTML = 'You have ' + ussAssembly.hull + ' health left';
-        document.getElementById('log').append(alienhealth);
-    } else { 
-        //else misses
-        console.log('The Alien Ship missed your ship');
-        let alienmissed = document.createElement('li');
-        alienmissed.innerHTML = 'The Alien Ship missed your ship';
-        document.getElementById('log').append(alienmissed);
-    }
+        if (Math.random() <= alienArmy[0].accuracy) {
+            //alien attacks you
+            alienArmy[0].attack(ussAssembly);
+            //log begin
+            console.log('The Alien Ship hit you');
+            let alienhit = document.createElement('li');
+            alienhit.innerHTML = 'The Alien Ship hit you';
+            document.getElementById('log').append(alienhit);
+            //log2
+            console.log('You have' + ussAssembly.hull + ' health left');
+            let alienhealth = document.createElement('li');
+            alienhealth.innerHTML = 'You have ' + ussAssembly.hull + ' health left';
+            document.getElementById('log').append(alienhealth);
+        } else { 
+            //else misses
+            console.log('The Alien Ship missed your ship');
+            let alienmissed = document.createElement('li');
+            alienmissed.innerHTML = 'The Alien Ship missed your ship';
+            document.getElementById('log').append(alienmissed);
+        }
+    }  
 }
-
+    
         function fhumandies(){
         //human dies
         if(ussAssembly.hull <= 0){
@@ -195,10 +198,12 @@ gamebutton.addEventListener("click", spaceGame)
 
         function froundend(){    
         //round end
-        console.log('Round End');
-        let nextround = document.createElement('li');
-        nextround.innerHTML = 'Round End';
-        document.getElementById('log').append(nextround);
+        if(document.getElementById('log').innerHTML != 'You retreated. You live to fight another day. Game Over' && document.getElementById('log').innerHTML != 'Sorry, you died. You lose. Game Over.'){
+            console.log('Round End');
+            let nextround = document.createElement('li');
+            nextround.innerHTML = 'Round End';
+            document.getElementById('log').append(nextround);
+        }
 }
 
    //game function
