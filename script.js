@@ -92,26 +92,28 @@ function fhumanAttack() {
             let alienleft = document.createElement('li');
             alienleft.innerHTML = 'There are ' + alienArmy.length + " Alien Ships left";
             document.getElementById('log').append(alienleft);
-            //if alien dies confirm
-            if (confirm("The Alien Ship went kabloo-ey! There are " + alienArmy.length + " Alien Ships left. You have " + ussAssembly.hull + " health left. Do you dare to continue? Press Ok to Continue, Press Cancel to Retreat")) {
-                //log1 new alien
-                console.log('You lock on to your next target');
-                let continuewin = document.createElement('li');
-                continuewin.innerHTML = 'You lock on to your next target';
-                document.getElementById('log').append(continuewin);
-                //log2 new alien health
-                console.log('The new Alien Ship has ' + alienArmy[0].hull + ' health');
-                let newhealth = document.createElement('li');
-                newhealth.innerHTML = ('The new Alien Ship has ' + alienArmy[0].hull + ' health');
-                document.getElementById('log').append(newhealth);
-            } else {
-                console.log('You retreated. You live to fight another day. Game Over');
-                let retreatlose = document.createElement('li');
-                retreatlose.innerHTML = 'You retreated. You live to fight another day. Game Over';
-                document.getElementById('log').append(retreatlose);
-                document.getElementById('log').innerHTML = 'You retreated. You live to fight another day. Game Over'
-                document.getElementById('gameoverdiv').innerHTML = ''
-            } 
+            if(alienArmy.length != 0){
+                //if alien dies confirm
+                if (confirm("The Alien Ship went kabloo-ey! There are " + alienArmy.length + " Alien Ships left. You have " + ussAssembly.hull + " health left. Do you dare to continue? Press Ok to Continue, Press Cancel to Retreat")) {
+                    //log1 new alien
+                    console.log('You lock on to your next target');
+                    let continuewin = document.createElement('li');
+                    continuewin.innerHTML = 'You lock on to your next target';
+                    document.getElementById('log').append(continuewin);
+                    //log2 new alien health
+                    console.log('The new Alien Ship has ' + alienArmy[0].hull + ' health');
+                    let newhealth = document.createElement('li');
+                    newhealth.innerHTML = ('The new Alien Ship has ' + alienArmy[0].hull + ' health');
+                    document.getElementById('log').append(newhealth);
+                } else {
+                    console.log('You retreated. You live to fight another day. Game Over');
+                    let retreatlose = document.createElement('li');
+                    retreatlose.innerHTML = 'You retreated. You live to fight another day. Game Over';
+                    document.getElementById('log').append(retreatlose);
+                    document.getElementById('log').innerHTML = 'You retreated. You live to fight another day. Game Over'
+                    document.getElementById('gameoverdiv').innerHTML = ''
+                } 
+            }    
         }
     }
             
