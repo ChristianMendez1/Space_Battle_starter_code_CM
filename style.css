@@ -16,11 +16,13 @@ body {
 #human {
   background-color: black;
   color: white;
+  text-align: center;
   }
   
 #enemy {
     background-color: black;
     color: white;
+    text-align: center;
 }
 
 #gamebutton {
@@ -32,7 +34,8 @@ body {
 
 ul {
     list-style-type: none;
-    line-height: 1.2;
+    line-height: 1.4;
+    text-align: center;
   }
 
 div {
