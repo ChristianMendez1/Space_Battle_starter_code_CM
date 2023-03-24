@@ -48,9 +48,9 @@ for (let i = 0; i < 6; i++){
 
 //Play Button
 gamebutton.addEventListener("click", spaceGame)
-    
-    function spaceGame(){
-
+   
+//gaming functions
+    function fhumanMissed() {
     //human missed
     if (Math.random() > ussAssembly.accuracy){
         //log1
@@ -59,7 +59,9 @@ gamebutton.addEventListener("click", spaceGame)
         humanmissed.innerHTML = 'You missed the Alien Ship';
         document.getElementById('log').append(humanmissed);
     }
+}
 
+    function fhumanAttack() {
     //human attack alien    
     if (Math.random() <= ussAssembly.accuracy) {
         ussAssembly.attack(alienArmy[0]);
@@ -73,8 +75,16 @@ gamebutton.addEventListener("click", spaceGame)
         let youhealth = document.createElement('li');
         youhealth.innerHTML = 'The Alien Ship has ' + alienArmy[0].hull + ' health left';
         document.getElementById('log').append(youhealth);
-        //log end
+    } else { 
+        //else miss
+        console.log('You missed the Alien Ship');
+        let humanmissed = document.createElement('li');
+        humanmissed.innerHTML = 'You missed the Alien Ship';
+        document.getElementById('log').append(humanmissed);
+    }
+}
 
+    function faliendies() {
         //alien dies = continue/retreat or gameover
         if(alienArmy[0].hull <= 0){
             //1 alienship dies
@@ -90,7 +100,23 @@ gamebutton.addEventListener("click", spaceGame)
             let alienleft = document.createElement('li');
             alienleft.innerHTML = 'There are ' + alienArmy.length + " Alien Ships left";
             document.getElementById('log').append(alienleft);
-       
+            //if alien dies confirm
+            if (confirm("The Alien Ship went kabloo-ey! There are " + alienArmy.length + " Alien Ships left. You have " + ussAssembly.hull + " health left. Do you dare to continue? Press Ok to Continue, Press Cancel to Retreat")) {
+                console.log('You lock on to your next target');
+                let continuewin = document.createElement('li');
+                continuewin.innerHTML = 'You lock on to your next target';
+                document.getElementById('log').append(continuewin);
+            } else {
+                console.log('You retreated. You live to fight another day. Game Over');
+                let retreatlose = document.createElement('li');
+                retreatlose.innerHTML = 'You retreated. You live to fight another day. Game Over';
+                document.getElementById('log').append(retreatlose);
+                document.getElementById('log').innerHTML = 'You retreated. You live to fight another day. Game Over'
+            } 
+        }
+    }
+
+        function fretreatorkeepgoing(){
             //retreat or keep going
             if (confirm("The Alien Ship went kabloo-ey! There are " + alienArmy.length + " Alien Ships left. You have " + ussAssembly.hull + " health left. Do you dare to continue? Press Ok to Continue, Press Cancel to Retreat")) {
                 console.log('You lock on to your next target');
@@ -103,8 +129,10 @@ gamebutton.addEventListener("click", spaceGame)
                 retreatlose.innerHTML = 'You retreated. You live to fight another day. Game Over';
                 document.getElementById('log').append(retreatlose);
                 document.getElementById('log').innerHTML = 'You retreated. You live to fight another day. Game Over'
-            }
+            } 
+        }
             
+        function fnomorealiens(){
             //no more aliens
              if(alienArmy.length === 0){
                 //log1
@@ -115,8 +143,8 @@ gamebutton.addEventListener("click", spaceGame)
                 document.getElementById('log').innerHTML = 'Congratulations, You saved the Universe! You Win!'
             }
         }
-    }
     
+    function falienmisseshuman(){
     //alien misses human
     if (Math.random() > alienArmy[0].accuracy){
         //missed
@@ -126,7 +154,9 @@ gamebutton.addEventListener("click", spaceGame)
         alienmissed.innerHTML = 'The Alien Ship missed your ship';
         document.getElementById('log').append(alienmissed);
     }
+}
 
+    function falienattackshuman(){
     //alien attacks human
     if (Math.random() <= alienArmy[0].accuracy) {
         //alien attacks you
@@ -141,7 +171,16 @@ gamebutton.addEventListener("click", spaceGame)
         let alienhealth = document.createElement('li');
         alienhealth.innerHTML = 'You have ' + ussAssembly.hull + ' health left';
         document.getElementById('log').append(alienhealth);
-        
+    } else { 
+        //else misses
+        console.log('The Alien Ship missed your ship');
+        let alienmissed = document.createElement('li');
+        alienmissed.innerHTML = 'The Alien Ship missed your ship';
+        document.getElementById('log').append(alienmissed);
+    }
+}
+
+        function fhumandies(){
         //human dies
         if(ussAssembly.hull <= 0){
             //you die and lose
@@ -153,9 +192,21 @@ gamebutton.addEventListener("click", spaceGame)
             document.getElementById('log').innerHTML = 'Sorry, you died. You lose. Game Over.'
         }
     }
+
+        function froundend(){    
+        //round end
         console.log('Round End');
         let nextround = document.createElement('li');
         nextround.innerHTML = 'Round End';
         document.getElementById('log').append(nextround);
 }
 
+   //game function
+function spaceGame(){
+    fhumanAttack();
+    faliendies();
+    fnomorealiens();
+    falienattackshuman();
+    fhumandies();
+    froundend();
+}
