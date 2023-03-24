@@ -105,10 +105,16 @@ gamebutton.addEventListener("click", spaceGame)
             document.getElementById('log').append(alienleft);
             //if alien dies confirm
             if (confirm("The Alien Ship went kabloo-ey! There are " + alienArmy.length + " Alien Ships left. You have " + ussAssembly.hull + " health left. Do you dare to continue? Press Ok to Continue, Press Cancel to Retreat")) {
+                //log1 new alien
                 console.log('You lock on to your next target');
                 let continuewin = document.createElement('li');
                 continuewin.innerHTML = 'You lock on to your next target';
                 document.getElementById('log').append(continuewin);
+                //log2 new alien health
+                console.log('The new Alien Ship has ' + alienArmy[0].hull + ' health');
+                let newhealth = document.createElement('li');
+                newhealth.innerHTML = ('The new Alien Ship has ' + alienArmy[0].hull + ' health');
+                document.getElementById('log').append(newhealth);
             } else {
                 console.log('You retreated. You live to fight another day. Game Over');
                 let retreatlose = document.createElement('li');
@@ -210,8 +216,8 @@ gamebutton.addEventListener("click", spaceGame)
 }
 
         function addstats(){
-            document.getElementById('humanstats').textContent = 'Hull = ' + ussAssembly.hull+ " | Firepower = " + ussAssembly.firepower + " | Accuracy = " + ussAssembly.accuracy
-            document.getElementById('enemystats').textContent = 'Hull = ' + alienArmy[0].hull + " | Firepower = " + alienArmy[0].firepower + " | Accuracy = " + alienArmy[0].accuracy
+            document.getElementById('humanstats').textContent = 'Health = ' + ussAssembly.hull+ " | Firepower = " + ussAssembly.firepower + " | Accuracy = " + ussAssembly.accuracy
+            document.getElementById('enemystats').textContent = 'Health = ' + alienArmy[0].hull + " | Firepower = " + alienArmy[0].firepower + " | Accuracy = " + alienArmy[0].accuracy
         }
 
    //game function
