@@ -131,6 +131,7 @@ function fnomorealiens(){
         document.getElementById('log').append(youwin);
         document.getElementById('log').innerHTML = 'Congratulations, You saved the Universe! You Win!'
         document.getElementById('gameoverdiv').innerHTML = ''
+        document.getElementById('enemystats').textContent = 'Health = 0 | Firepower = 0  | Alien Ships = 0 ' 
     }
 }
 
