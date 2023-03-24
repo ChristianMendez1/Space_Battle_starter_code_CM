@@ -189,7 +189,7 @@ if(document.getElementById('log').innerHTML != 'You retreated. You live to fight
 //updates stats
 function addstats(){
     document.getElementById('humanstats').textContent = 'Health = ' + ussAssembly.hull+ " | Firepower = " + ussAssembly.firepower + " | Accuracy = " + ussAssembly.accuracy
-    document.getElementById('enemystats').textContent = 'Health = ' + alienArmy[0].hull + " | Firepower = " + alienArmy[0].firepower + " | Accuracy = " + alienArmy[0].accuracy
+    document.getElementById('enemystats').textContent = 'Health = ' + alienArmy[0].hull + " | Firepower = " + alienArmy[0].firepower + " | Alien Ships = " + alienArmy.length
 }
 
 //actual game function
@@ -203,3 +203,5 @@ function spaceGame(){
     addstats();
     document.getElementById('log').scrollTo(0, 10000);
 }
+
+
